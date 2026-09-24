@@ -60,8 +60,7 @@ void LED1_Output(uint8_t led_value)
 
 uint8_t LED1_Status(void)
 {
-    uint8_t LED1_Status = P1->OUT & 0x01;
-    return LED1_Status;
+    return P1->OUT & 0x01;
 }
 
 void LED2_Init(void)
@@ -80,13 +79,12 @@ void LED2_Output(uint8_t led_value)
 
 void LED2_Toggle(uint8_t led_value)
 {
-    P2->OUT ^= led_value;
+    P2->OUT ^= (led_value & 0x07);
 }
 
 uint8_t LED2_Status(void)
 {
-    uint8_t LED2_Status = P2->OUT & 0x07;
-    return LED2_Status;
+    return P2->OUT & 0x07;
 }
 
 void Buttons_Init(void)
@@ -108,7 +106,6 @@ void PMOD_8LD_Init(void)
 {
     P9->SEL0 &= ~0xFF;
     P9->SEL1 &= ~0xFF;
-    P9->DS |= 0xFF;
     P9->DIR |= 0xFF;
     P9->OUT &= ~0xFF;
 }
