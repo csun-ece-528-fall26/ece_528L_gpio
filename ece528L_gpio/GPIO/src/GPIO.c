@@ -93,7 +93,7 @@ void Buttons_Init(void)
 {
     P1->SEL0 &= ~0x12;
     P1->SEL1 &= ~0x12;
-    P1->DIR |= ~0x12;
+    P1->DIR &= ~0x12;
     P1->REN |= 0x12;
     P1->OUT |= 0x12;
 }
